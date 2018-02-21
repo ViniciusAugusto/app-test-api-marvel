@@ -1,6 +1,6 @@
 (function(window) {
     window.App = window.App || {}
-    
+
     class LoaderHeroes {
         constructor () {
             this.path = 'characters'
@@ -43,10 +43,10 @@
                         this.load(characters, this.count, cb)
                     }
                 }
-                
+
             })
         }
-       
+
     }
 
     window.App.LoaderHeroes = new LoaderHeroes().preLoad();

@@ -8,29 +8,47 @@
     }
 
     render () {
-      const view = document.createElement('div');
-      const content = this.superHeroes.map( hero => {
-        return `<tr>
-                  <td><img src="${hero.image}" width="200px" /> ${hero.name}</td>
-                  <td>${hero.series.map(serie => `<p>${serie.name}</p>`).join('')}</td>
-                  <td>${hero.events.map(event => `<p>${event.name}</p>`).join('')}</td>
-                </tr>`
-      })
-      const template = `<table>
-                          <thead>
-                            <tr>
-                              <td>Personagem</td>
-                              <td>Séries</td>
-                              <td>Eventos</td>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            ${content}
-                          </tbody>
-                        </table>`
+      const view = document.createElement('div')
+      const template = `
+      <h1><b>BUSCA MARVEL</b> TESTE FRONT-END</h1>
+          <h2 class="mobile">Vinicius Augusto Cunha</h2>
 
-      view.innerHTML= template;
-      return view;
+          <form>
+            <label for="name">Nome do Personagem</label>
+            <input type="text" id="nome" placeholder="Filtre por nome do personagem">
+          </form>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Personagem</th>
+                <th class="mobile">Séries</th>
+                <th class="mobile">Eventos</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${
+                this.superHeroes.map(hero => {
+                  return `
+                  <tr>
+                    <td>
+                      <img src="${hero.image}" alt="${hero.name.trim()}">
+                      <span>${hero.name.trim()}</span>
+                    </td>
+                    <td class="mobile">
+                      ${hero.series.map(serie => `${serie.name}<br />`).join('')}
+                    </td>
+                    <td class="mobile">
+                    ${hero.events.map(event => `${event.name}<br />`).join('')}
+                    </td>
+                  </tr>`
+                }).join('')
+              }
+            </tbody>
+          </table>
+  `;
+      view.innerHTML= template
+      return view
     }
   }
 
