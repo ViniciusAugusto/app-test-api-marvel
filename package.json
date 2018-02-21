@@ -1,0 +1,32 @@
+{
+  "name": "app-test-marvel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ViniciusAugusto/app-test-api-marvel.git"
+  },
+  "keywords": [
+    "api",
+    "marvel",
+    "spa"
+  ],
+  "author": "Vinicius Augusto <viniciusaugustocunha@gmail.com> (http://viniciusaugusto.com.br/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ViniciusAugusto/app-test-api-marvel/issues"
+  },
+  "homepage": "https://github.com/ViniciusAugusto/app-test-api-marvel#readme",
+  "devDependencies": {
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  },
+  "dependencies": {
+    "blueimp-md5": "^2.10.0"
+  }
+}
