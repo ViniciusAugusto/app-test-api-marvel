@@ -10,12 +10,13 @@
       this.currentPage = 1
       this.numberPerPage = 3
       this.numberOfPages = 0
+      this.author = 'Vinicius Augusto Cunha'
     }
     render () {
       const view = document.createElement('div')
       const template = `
       <h1><b>BUSCA MARVEL</b> TESTE FRONT-END</h1>
-          <h2 class="mobile">Vinicius Augusto Cunha</h2>
+          <h2 class="mobile">${this.author}</h2>
           <form>
             <label for="name">Nome do Personagem</label>
             <input type="text" id="nome" placeholder="Filtre por nome do personagem">
@@ -34,11 +35,11 @@
           <div id="controls">
             <div>
               <input type="button" id="first" value="Primeira Página" />
-              <input type="button" id="previous" onclick="previousPage()" value="Página Anterior" />
+              <input type="button" id="previous" value="Página Anterior" />
               <ul id="numbers">
               </ul>
               <input type="button" id="next" value="Próxima Pagina" />
-              <input type="button" id="last" onclick="lastPage()" value="Última Página" />
+              <input type="button" id="last" value="Última Página" />
             </div>
           </div>
   `;
