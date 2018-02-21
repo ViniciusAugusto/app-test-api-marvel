@@ -1,7 +1,7 @@
 // instantiate api when user requests
 (function(window) {
     window.App = window.App || {}
-  
+
     class Api {
 
         constructor () {

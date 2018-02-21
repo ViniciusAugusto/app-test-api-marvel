@@ -21,6 +21,13 @@
 
       this.container.innerHTML = '';
       this.container.appendChild( state.render() );
+      if (route === 'superheroes') {
+        document.getElementById('first').onclick = () => state.firstPage()
+        document.getElementById('next').onclick = () => state.nextPage()
+        document.getElementById('previous').onclick = () => state.previousPage()
+        document.getElementById('last').onclick = () => state.lastPage()
+        state.load()
+      }
     }
   }
 

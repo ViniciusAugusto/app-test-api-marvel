@@ -110,6 +110,58 @@ html, body {
   padding-left: 20px;
 }
 
+#container #controls {
+  width: 100%;
+  text-align: center;
+  padding: 10vh 0
+}
+
+#container #controls div {
+  display: inline-block;
+}
+
+#container #controls input[type="button"]{
+  background-color: #D42026;
+  color: #FFF;
+  text-align: center;
+  border: none;
+  padding: 1.5vh;
+  float: left;
+  font-size: 1.5vh;
+  margin: 0 10px;
+}
+
+#container #controls input[type="button"]:disabled {
+  background: #FFF;
+  color: #D42026;
+  border: 1px solid #D42026
+}
+
+#container #controls ul {
+  text-align: center;
+  list-style: none;
+  float: left;
+}
+
+#container #controls ul li {
+  background: #FFF;
+  color: #D42026;
+  border: 1px solid #D42026;
+  width: 50px;
+  height: 50px;
+  border-radius: 99%;
+  display: inline-block;
+  text-align: center;
+  line-height: 50px;
+  margin: 0 10px
+}
+
+#container #controls ul li.active {
+  background: #D42026;
+  color: #FFF;
+  border: 1px solid #D42026
+}
+
 /*
   ##Device = Tablets, Ipads (portrait)
   ##Screen = B/w 768px to 1024px
@@ -161,27 +213,52 @@ html, body {
   .mobile {
     display: none;
   }
+
   #container h1 {
     width: calc(100vw - 40px);
     font-size: 2.5vh;
     padding: 0 20px;
   }
+
   #container form {
     padding: 5vw 20px;
   }
+
   #container table tbody tr td:nth-child(1) {
     width: 100%
   }
+
   #container {
    padding: 3vh 0 0 0
   }
+
   #container form input {
     max-width: 300px;
   }
+
   #container table thead th {
     border: none
   }
+
   #container table tbody tr td:first-child img {
     max-width: 20vw;
+  }
+
+  #container #controls ul li:first-child{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+
+  #container #controls ul li{
+    display: none;
+  }
+
+  #container #controls input[type="button"]{
+    margin: 0 5px;
+  }
+  #container #controls input[type="button"]{
+    padding: 0.5vh
   }
 }
