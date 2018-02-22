@@ -26,6 +26,7 @@
         document.getElementById('next').onclick = () => state.nextPage()
         document.getElementById('previous').onclick = () => state.previousPage()
         document.getElementById('last').onclick = () => state.lastPage()
+        document.getElementById('search').onclick = () => state.findHeroes()
         state.load()
       }
     }

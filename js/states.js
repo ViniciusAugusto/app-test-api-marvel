@@ -15,33 +15,34 @@
     render () {
       const view = document.createElement('div')
       const template = `
-      <h1><b>BUSCA MARVEL</b> TESTE FRONT-END</h1>
+          <h1><b>BUSCA MARVEL</b> TESTE FRONT-END</h1>
           <h2 class="mobile">${this.author}</h2>
           <form>
-            <label for="name">Nome do Personagem</label>
-            <input type="text" id="nome" placeholder="Filtre por nome do personagem">
-          </form>
-          <table>
-            <thead>
-              <tr>
-                <th>Personagem</th>
-                <th class="mobile">Séries</th>
-                <th class="mobile">Eventos</th>
-              </tr>
-            </thead>
-            <tbody id="list">
-            </tbody>
-          </table>
-          <div id="controls">
-            <div>
-              <input type="button" id="first" value="Primeira Página" />
-              <input type="button" id="previous" value="Página Anterior" />
-              <ul id="numbers">
-              </ul>
-              <input type="button" id="next" value="Próxima Pagina" />
-              <input type="button" id="last" value="Última Página" />
+              <label for="name">Nome do Personagem</label>
+              <input type="text" id="nome" placeholder="Filtre por nome do personagem">
+              <button id="search" type="button">Buscar</button>
+            </form>
+            <table>
+              <thead>
+                <tr>
+                  <th>Personagem</th>
+                  <th class="mobile">Séries</th>
+                  <th class="mobile">Eventos</th>
+                </tr>
+              </thead>
+              <tbody id="list">
+              </tbody>
+            </table>
+            <div id="controls">
+              <div>
+                <input type="button" id="first" value="Primeira Página" />
+                <input type="button" id="previous" value="Página Anterior" />
+                <ul id="numbers">
+                </ul>
+                <input type="button" id="next" value="Próxima Pagina" />
+                <input type="button" id="last" value="Última Página" />
+              </div>
             </div>
-          </div>
   `;
       view.innerHTML= template
       return view
@@ -117,22 +118,54 @@
 
       let numbers = ''
       for (let index = this.currentPage; index < (this.currentPage + 5); index++) {
-        if (index === (this.superHeroes.length / this.numberPerPage)) break;
+        if (index === parseInt((this.superHeroes.length / this.numberPerPage))) break;
         numbers += (index === this.currentPage) ? `<li class="active">${index}</li>` : `<li>${index}</li>`
       }
       document.getElementById('numbers').innerHTML = numbers
     }
 
     check() {
-      document.getElementById("next").disabled = this.currentPage == this.numberOfPages ? true : false;
-      document.getElementById("previous").disabled = this.currentPage == 1 ? true : false;
-      document.getElementById("first").disabled = this.currentPage == 1 ? true : false;
-      document.getElementById("last").disabled = this.currentPage == this.numberOfPages ? true : false;
+      document.getElementById("next").disabled = this.currentPage == this.numberOfPages ? true : false
+      document.getElementById("previous").disabled = this.currentPage == 1 ? true : false
+      document.getElementById("first").disabled = this.currentPage == 1 ? true : false
+      document.getElementById("last").disabled = this.currentPage == this.numberOfPages ? true : false
     }
 
     load() {
-      this.makeList();
-      this.loadList();
+      this.makeList()
+      this.loadList()
+    }
+
+    findHeroes () {
+      const name = document.getElementById('nome').value.toString().trim()
+      if (name != '') {
+        window.App.Api.get('characters', 100, 0, name).then((data) => {
+          if (data.code === 200) {
+            const arrMap = data.data.results.map((char) => {
+                return {
+                  image: char.thumbnail.path + '.' + char.thumbnail.extension,
+                  name: char.name,
+                  events: char.events.items.filter((event) => event.name),
+                  series: char.series.items.filter((serie) => serie.name)
+                }
+            })
+            this.resetHeroes(arrMap)
+          }
+        })
+      } else {
+        this.resetHeroes(JSON.parse(localStorage.getItem('characters')))
+      }
+    }
+
+    resetHeroes (heroes) {
+      this.superHeroes = heroes
+      this.pageList = []
+      this.list = []
+      this.currentPage = 1
+      this.numberPerPage = 3
+      this.numberOfPages = 0
+      this.makeList()
+      this.loadList()
     }
 
   }

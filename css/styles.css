@@ -51,6 +51,7 @@ html, body {
   color: #D42026;
   font-family: 'Roboto Regular', sans-serif;
   font-weight: 200;
+  overflow: hidden;
 }
 #container form input, label {
     display:block;
@@ -60,7 +61,19 @@ html, body {
   padding: 1.5vh;
   border: 1px #A5A5A5 solid;
   border-radius: 5px;
-  margin-top: .5vh
+  margin-top: .5vh;
+  float: left
+}
+
+#container form button {
+  background-color: #D42026;
+  color: #FFF;
+  text-align: center;
+  border: none;
+  padding: 1.5vh;
+  float: left;
+  font-size: 1.5vh;
+  margin: 5px 10px;
 }
 
 #container table {
@@ -233,7 +246,7 @@ html, body {
   }
 
   #container form input {
-    max-width: 300px;
+    max-width: 250px;
   }
 
   #container table thead th {

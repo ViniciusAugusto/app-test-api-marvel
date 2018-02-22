@@ -27,14 +27,14 @@
                     console.log('find characters...', characters.length)
                     this.total = data.data.total
                     this.count = count + 100
-                   const arrMap = data.data.results.map((char) => {
-                       return {
+                    const arrMap = data.data.results.map((char) => {
+                        return {
                             image: char.thumbnail.path + '.' + char.thumbnail.extension,
                             name: char.name,
                             events: char.events.items.filter((event) => event.name),
                             series: char.series.items.filter((serie) => serie.name)
                         }
-                   })
+                    })
 
                     characters = characters.concat(arrMap)
                     if(characters.length === this.total) {
@@ -46,7 +46,6 @@
 
             })
         }
-
     }
 
     window.App.LoaderHeroes = new LoaderHeroes().preLoad();

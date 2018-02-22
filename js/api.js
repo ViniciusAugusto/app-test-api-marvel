@@ -16,12 +16,14 @@
         }
 
         generateUrl (path, limit, offset) {
-            let hashKey = this.generateHashKey();
+            let hashKey = this.generateHashKey()
             return this.url + path + '?apikey=' + this.apiPublicKey + '&ts=' + hashKey.ts + '&hash=' + hashKey.hash+'&limit=' + limit + '&offset=' + offset;
         }
 
-        get(path, limit, offset) {
-            const URL = this.generateUrl(path, limit, offset)
+        get(path, limit, offset, name = '') {
+            let URL = this.generateUrl(path, limit, offset)
+            if (name)
+              URL = URL + '&nameStartsWith='+name
             var headers = {
               'Content-Type': 'application/json'
             }
@@ -49,8 +51,7 @@
             return promise
           }
     }
-  
+
     window.App.Api = new Api()
-  
+
   }(window))
-  
