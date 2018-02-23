@@ -6,7 +6,7 @@
     constructor () {
       this.apiPublicKey = '8f6e216f4ee45763e7f01353e0bc8d29'
       this.apiPrivateKey = 'af23f1ceb3e540c4915008375a5427e79e1dcd4d'
-      this.url = 'http://gateway.marvel.com/v1/public/'
+      this.url = 'https://gateway.marvel.com/v1/public/'
     }
 
     generateHashKey () {
