@@ -242,9 +242,8 @@
     }
 
     checkSecurity (str) {
-      let security = window.location.protocol
-      if(security === 'https:') {
-        str.replace('http:', security)
+      if (window.location.protocol === 'https:') {
+        str = str.replace('http:', window.location.protocol)
       }
       return str
     }
