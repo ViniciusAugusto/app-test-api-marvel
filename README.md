@@ -7,7 +7,7 @@ App consists of searching and listing the heroes of the marvel through the api: 
 
 ## [Demo](http://app-test-api-marvel.herokuapp.com/)
 
-![Page App](https://imgur.com/a/TT0tL)
+![Page App](http://app-test-api-marvel.herokuapp.com/images/layout.png)
 
 ### Prerequisites
 
