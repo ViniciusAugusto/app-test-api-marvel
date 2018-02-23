@@ -11,16 +11,18 @@
       this.numberPerPage = 3
       this.numberOfPages = 0
       this.author = 'Vinicius Augusto Cunha'
+      this.events = []
+      this.series = []
     }
     render () {
       const view = document.createElement('div')
       const template = `
-          <h1><b>BUSCA MARVEL</b> TESTE FRONT-END</h1>
-          <h2 class="mobile">${this.author}</h2>
+          <h1 class="title"><b>BUSCA MARVEL</b> TESTE FRONT-END</h1>
+          <h2 class="subtitle mobile">${this.author}</h2>
           <form>
               <label for="name">Nome do Personagem</label>
               <input type="text" id="nome" placeholder="Filtre por nome do personagem">
-              <button id="search" type="button">Buscar</button>
+              <button id="search" class="btn" type="button">Buscar</button>
             </form>
             <table>
               <thead>
@@ -52,7 +54,7 @@
       const arrayHtml = [];
       for (let index = 0; index < this.superHeroes.length; index++) {
         arrayHtml.push(`
-        <tr>
+        <tr data-ref="${index}">
           <td>
             <img src="${this.superHeroes[index].image}" alt="${this.superHeroes[index].name.trim()}">
             <span>${this.superHeroes[index].name.trim()}</span>
@@ -62,6 +64,18 @@
           </td>
           <td class="mobile">
           ${this.superHeroes[index].events.map(event => `${event.name}<br />`).join('')}
+          <input class="modal-state" id="modal-${index}" type="checkbox" />
+          <div class="modal">
+            <label class="modal__bg" for="modal-${index}"></label>
+            <div class="modal__inner">
+              <label class="modal__close" for="modal-${index}"></label>
+              <h1>${this.superHeroes[index].name.trim()}</h1>
+              <h2 ${(this.superHeroes[index].events.length == 0)? `style="display:none` : ``}>Eventos</h2>
+              <section class="cards" id="events-${index}"></section>
+              <h2 ${(this.superHeroes[index].series.length == 0)? `style="display:none` : ``}>Séries</h2>
+              <section class="cards" id="series-${index}"></section>
+            </div>
+          </div>
           </td>
         </tr>`)
       }
@@ -155,6 +169,76 @@
       } else {
         this.resetHeroes(JSON.parse(localStorage.getItem('characters')))
       }
+    }
+
+    loadDetails(id) {
+      const hero = this.superHeroes[id]
+      if(hero.events.length > 0) {
+        this.events = []
+        this.loadDetailsEvents(hero.events, id)
+      }
+      if (hero.series.length > 0) {
+        this.series = []
+        this.loadDetailsSeries(hero.series, id)
+      }
+    }
+
+    async loadDetailsEvents (events, id) {
+      const eventsPromises = events.map(event => {
+        return  window.App.Api.get(event.resourceURI.replace('http://gateway.marvel.com/v1/public/', ''), 100, 0,'')
+      })
+      this.events = await Promise.all(eventsPromises)
+      this.loadEvents(id)
+    }
+
+    async loadDetailsSeries (series, id) {
+      const seriesPromises = series.map(serie => {
+        return  window.App.Api.get(serie.resourceURI.replace('http://gateway.marvel.com/v1/public/', ''), 100, 0, '')
+      })
+      this.series = await Promise.all(seriesPromises)
+      this.loadSeries(id)
+    }
+
+    loadEvents (id) {
+      let template = ''
+      for (let index = 0; index < this.events.length; index++) {
+        const event = this.events[index].data.results[0]
+        template += `
+                    <article class="card">
+                      <a href="#">
+                          <picture class="thumbnail">
+                              <img src="${event.thumbnail.path+'.'+event.thumbnail.extension}" alt="${event.title}">
+                          </picture>
+                          <div class="card-content">
+                              <h2>${event.title}</h2>
+                              ${(event.description != null) ? `<p>${event.description}</p><br />` : ''}
+                              <ul>${event.urls.map((url) => `<li><a href="${url.url}" target="blank">${(url.type === 'wiki')?'Wiki' : 'Detalhes'}</a></li>`).join('')}</ul>
+                          </div>
+                      </a>
+                    </article>`
+      }
+      document.getElementById('events-'+id).innerHTML = template
+    }
+
+    loadSeries (id) {
+      let template = ''
+      for (let index = 0; index < this.series.length; index++) {
+        const serie = this.series[index].data.results[0]
+        template += `
+                    <article class="card">
+                      <a href="#">
+                          <picture class="thumbnail">
+                              <img src="${serie.thumbnail.path+'.'+serie.thumbnail.extension}" alt="${serie.title}">
+                          </picture>
+                          <div class="card-content">
+                              <h2>${serie.title}</h2>
+                              ${(serie.description != null) ? `<p>${serie.description}</p><br />` : ''}
+                              <ul>${serie.urls.map((url) => `<li><a href="${url.url}" target="blank">${(url.type === 'wiki')?'Wiki' : 'Detalhes'}</a></li>`).join('')}</ul>
+                          </div>
+                      </a>
+                    </article>`
+      }
+      document.getElementById('series-'+id).innerHTML = template
     }
 
     resetHeroes (heroes) {

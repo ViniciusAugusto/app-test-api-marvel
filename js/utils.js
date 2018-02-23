@@ -13,7 +13,6 @@
         preLoad () {
             if (!localStorage.getItem('characters')) {
                 this.load([], 0, (characters) => {
-                    console.log('finaly characters...', characters.length)
                     localStorage.setItem('characters', JSON.stringify(characters))
                 })
             }else {
@@ -24,7 +23,6 @@
         load (characters, count, cb) {
             window.App.Api.get(this.path, 100, count, {}).then((data) => {
                 if (data.code === 200) {
-                    console.log('find characters...', characters.length)
                     this.total = data.data.total
                     this.count = count + 100
                     const arrMap = data.data.results.map((char) => {

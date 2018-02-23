@@ -27,6 +27,13 @@
         document.getElementById('previous').onclick = () => state.previousPage()
         document.getElementById('last').onclick = () => state.lastPage()
         document.getElementById('search').onclick = () => state.findHeroes()
+        document.addEventListener('click', (e) => {
+          if(e.target.tagName === 'TD') {
+            const id = e.target.parentElement.getAttribute('data-ref')
+            document.getElementById('modal-'+id).checked = true
+            state.loadDetails(id)
+          }
+        })
         state.load()
       }
     }

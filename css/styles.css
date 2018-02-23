@@ -1,3 +1,7 @@
+:root {
+  --main-bg-color: #D42026;
+  --hover-bg-color: #F7EAE9;
+}
 * {
   padding: 0;
   margin: 0;
@@ -14,33 +18,38 @@ html, body {
 }
 .footer {
   height: 50px;
-  background-color: #D42026
+  background-color: var(--main-bg-color);
 }
-#container h1, #container h2{
+
+#container .center {
+  text-align: center
+}
+
+#container h1.title, #container h2.subtitle{
   width: 50%;
-  color: #D42026;
+  color: var(--main-bg-color);
   font-family: 'Roboto Light', sans-serif;
   font-weight: 200;
   font-size: 3vh;
 }
-#container h1{
+#container h1.title{
   float: left;
   text-align: left;
 }
-#container h1 b{
+#container h1.title b{
   font-family: 'Roboto Black', sans-serif;
   position: relative
 }
-#container h1 b:after{
+#container h1.title b:after{
   content: '';
   width: 5vw;
-  background: #D42026;
+  background: var(--main-bg-color);
   height: .5vh;
   position: absolute;
   bottom: -1vh;
   left: 0;
 }
-#container h2{
+#container h2.subtitle{
   float: right;
   text-align: right;
   text-transform: uppercase
@@ -48,7 +57,7 @@ html, body {
 #container form {
   clear: both;
   padding: 3vh 0;
-  color: #D42026;
+  color: var(--main-bg-color);
   font-family: 'Roboto Regular', sans-serif;
   font-weight: 200;
   overflow: hidden;
@@ -65,8 +74,8 @@ html, body {
   float: left
 }
 
-#container form button {
-  background-color: #D42026;
+#container .btn {
+  background-color: var(--main-bg-color);
   color: #FFF;
   text-align: center;
   border: none;
@@ -74,6 +83,13 @@ html, body {
   float: left;
   font-size: 1.5vh;
   margin: 5px 10px;
+  border: 1px solid var(--main-bg-color);
+}
+
+#container .btn:hover {
+  background-color: var(--hover-bg-color);
+  border: 1px solid var(--main-bg-color);
+  color: var(--main-bg-color);
 }
 
 #container table {
@@ -94,7 +110,7 @@ html, body {
   border-bottom: .5vh solid #F0D3D4;
  }
  #container table tbody tr:hover {
-   background-color: #F7EAE9;
+  background-color: var(--hover-bg-color);
  }
 
  #container table tbody tr td{
@@ -134,7 +150,7 @@ html, body {
 }
 
 #container #controls input[type="button"]{
-  background-color: #D42026;
+  background-color: var(--main-bg-color);
   color: #FFF;
   text-align: center;
   border: none;
@@ -142,12 +158,19 @@ html, body {
   float: left;
   font-size: 1.5vh;
   margin: 0 10px;
+  transition: all 3ms ease;
+}
+
+#container #controls input[type="button"]:hover {
+  background-color: var(--hover-bg-color);
+  border-color: var(--main-bg-color);
+  color: var(--main-bg-color);
 }
 
 #container #controls input[type="button"]:disabled {
   background: #FFF;
-  color: #D42026;
-  border: 1px solid #D42026
+  color: var(--main-bg-color);
+  border: 1px solid var(--main-bg-color)
 }
 
 #container #controls ul {
@@ -158,8 +181,8 @@ html, body {
 
 #container #controls ul li {
   background: #FFF;
-  color: #D42026;
-  border: 1px solid #D42026;
+  color: var(--main-bg-color);
+  border: 1px solid var(--main-bg-color);
   width: 50px;
   height: 50px;
   border-radius: 99%;
@@ -170,9 +193,9 @@ html, body {
 }
 
 #container #controls ul li.active {
-  background: #D42026;
+  background: var(--main-bg-color);
   color: #FFF;
-  border: 1px solid #D42026
+  border: 1px solid var(--main-bg-color)
 }
 
 /*
@@ -227,7 +250,7 @@ html, body {
     display: none;
   }
 
-  #container h1 {
+  #container  h1 {
     width: calc(100vw - 40px);
     font-size: 2.5vh;
     padding: 0 20px;
