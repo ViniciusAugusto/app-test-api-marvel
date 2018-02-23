@@ -207,7 +207,7 @@
                     <article class="card">
                       <a href="#">
                           <picture class="thumbnail">
-                              <img src="${event.thumbnail.path+'.'+event.thumbnail.extension}" alt="${event.title}">
+                              <img src="${this.checkSecurity(event.thumbnail.path+'.'+event.thumbnail.extension)}" alt="${event.title}">
                           </picture>
                           <div class="card-content">
                               <h2>${event.title}</h2>
@@ -228,7 +228,7 @@
                     <article class="card">
                       <a href="#">
                           <picture class="thumbnail">
-                              <img src="${serie.thumbnail.path+'.'+serie.thumbnail.extension}" alt="${serie.title}">
+                              <img src="${this.checkSecurity(serie.thumbnail.path+'.'+serie.thumbnail.extension)}" alt="${serie.title}">
                           </picture>
                           <div class="card-content">
                               <h2>${serie.title}</h2>
@@ -239,6 +239,14 @@
                     </article>`
       }
       document.getElementById('series-'+id).innerHTML = template
+    }
+
+    checkSecurity (str) {
+      let security = window.location.protocol
+      if(security === 'https:') {
+        str.replace('http:', security)
+      }
+      return str
     }
 
     resetHeroes (heroes) {
