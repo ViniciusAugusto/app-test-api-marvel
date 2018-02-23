@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "live-server",
+    "lint": "./node_modules/.bin/eslint ./js/*.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,8 @@
   "devDependencies": {
     "eslint": "^4.18.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0"
+    "eslint-plugin-import": "^2.8.0",
+    "live-server": "^1.2.0"
   },
   "dependencies": {
     "blueimp-md5": "^2.10.0"

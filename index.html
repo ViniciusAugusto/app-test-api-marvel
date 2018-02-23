@@ -6,12 +6,19 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/spinner.css">
     <title>Marvel API using SPA</title>
   </head>
-  <body onload="App.Router.navigate('superheroes');">
+  <body onload="App.LoaderHeroes.preLoad();">
     <div id="container"></div>
     <footer class="footer">
     </footer>
+    <div class="spinner" id="loading" style="display: none">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+      <h1>Carregando dados... <span id="percentage">0%</span></h1>
+    </div>
     <script src="node_modules/blueimp-md5/js/md5.min.js"></script>
     <script src="js/api.js"></script>
     <script src="js/utils.js"></script>

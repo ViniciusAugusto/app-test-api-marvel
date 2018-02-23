@@ -79,7 +79,7 @@ html, body {
   color: #FFF;
   text-align: center;
   border: none;
-  padding: 1.5vh;
+  padding: 1.2vh;
   float: left;
   font-size: 1.5vh;
   margin: 5px 10px;
@@ -269,7 +269,7 @@ html, body {
   }
 
   #container form input {
-    max-width: 250px;
+    max-width: 220px;
   }
 
   #container table thead th {

@@ -12,16 +12,24 @@
 
         preLoad () {
             if (!localStorage.getItem('characters')) {
+                document.getElementById('container').style.display = 'none'
+                document.querySelector('footer').style.display = 'none'
+                document.getElementById('loading').style.display = ''
                 this.load([], 0, (characters) => {
                     localStorage.setItem('characters', JSON.stringify(characters))
+                    document.getElementById('container').style.display = ''
+                    document.querySelector('footer').style.display = ''
+                    document.getElementById('loading').style.display = 'none'
+                    App.Router.navigate('superheroes')
                 })
             }else {
                 console.log(JSON.parse(localStorage.getItem('characters')))
+                App.Router.navigate('superheroes')
             }
         }
 
         load (characters, count, cb) {
-            window.App.Api.get(this.path, 100, count, {}).then((data) => {
+            window.App.Api.get(this.path, 100, count, '').then((data) => {
                 if (data.code === 200) {
                     this.total = data.data.total
                     this.count = count + 100
@@ -35,6 +43,7 @@
                     })
 
                     characters = characters.concat(arrMap)
+                    document.getElementById('percentage').innerText = parseInt(((characters.length/ this.total) * 100)) + '%'
                     if(characters.length === this.total) {
                         cb(characters)
                     } else {
@@ -46,6 +55,6 @@
         }
     }
 
-    window.App.LoaderHeroes = new LoaderHeroes().preLoad();
+    window.App.LoaderHeroes = new LoaderHeroes();
 
 }(window));
