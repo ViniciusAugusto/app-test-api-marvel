@@ -5,8 +5,8 @@
   "background_color": "#d42026",
   "display": "fullscreen",
   "orientation": "portrait",
-  "Scope": "/",
-  "start_url": "/",
+  "Scope": "https://app-test-api-marvel.herokuapp.com/",
+  "start_url": "https://app-test-api-marvel.herokuapp.com/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
