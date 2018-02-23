@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node app",
     "dev": "live-server",
     "lint": "./node_modules/.bin/eslint ./js/*.js"
   },
