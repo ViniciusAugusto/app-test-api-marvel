@@ -29,6 +29,8 @@
     "live-server": "^1.2.0"
   },
   "dependencies": {
-    "blueimp-md5": "^2.10.0"
+    "blueimp-md5": "^2.10.0",
+    "harp": "^0.25.0",
+    "node-static": "^0.7.10"
   }
 }
