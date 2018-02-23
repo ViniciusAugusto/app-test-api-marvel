@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "live-server",
+    "deploy": "git push heroku master",
     "lint": "./node_modules/.bin/eslint ./js/*.js"
   },
   "repository": {

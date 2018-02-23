@@ -6,7 +6,7 @@
     constructor () {
       this.apiPublicKey = '8f6e216f4ee45763e7f01353e0bc8d29'
       this.apiPrivateKey = 'af23f1ceb3e540c4915008375a5427e79e1dcd4d'
-      this.url = 'https://gateway.marvel.com/v1/public/'
+      this.url = 'gateway.marvel.com/v1/public/'
     }
 
     generateHashKey () {
@@ -16,7 +16,7 @@
 
     generateUrl (path, limit, offset) {
         let hashKey = this.generateHashKey()
-        return this.url + path + '?apikey=' + this.apiPublicKey + '&ts=' + hashKey.ts + '&hash=' + hashKey.hash+'&limit=' + limit + '&offset=' + offset;
+        return '//' + this.url + path + '?apikey=' + this.apiPublicKey + '&ts=' + hashKey.ts + '&hash=' + hashKey.hash+'&limit=' + limit + '&offset=' + offset;
     }
 
     get (path, limit, offset, name = '') {
