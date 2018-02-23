@@ -207,7 +207,7 @@
                     <article class="card">
                       <a href="#">
                           <picture class="thumbnail">
-                              <img src="${this.checkSecurity(event.thumbnail.path+'.'+event.thumbnail.extension)}" alt="${event.title}">
+                              <img src="${this.checkSafety(event.thumbnail.path+'.'+event.thumbnail.extension)}" alt="${event.title}">
                           </picture>
                           <div class="card-content">
                               <h2>${event.title}</h2>
@@ -228,7 +228,7 @@
                     <article class="card">
                       <a href="#">
                           <picture class="thumbnail">
-                              <img src="${this.checkSecurity(serie.thumbnail.path+'.'+serie.thumbnail.extension)}" alt="${serie.title}">
+                              <img src="${this.checkSafety(serie.thumbnail.path+'.'+serie.thumbnail.extension)}" alt="${serie.title}">
                           </picture>
                           <div class="card-content">
                               <h2>${serie.title}</h2>
@@ -241,7 +241,7 @@
       document.getElementById('series-'+id).innerHTML = template
     }
 
-    checkSecurity (str) {
+    checkSafety (str) {
       if (window.location.protocol === 'https:') {
         str = str.replace('http:', window.location.protocol)
       }
